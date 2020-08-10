@@ -1,0 +1,10 @@
+@import url(./__image/element__image.css);
+@import url(./__like/element__like.css);
+@import url(./__paragraph/element__paragraph.css);
+.element {
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas: "image image"
+    "text like";
+}

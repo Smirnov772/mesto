@@ -1,0 +1,12 @@
+@import url(./_style-white/element__paragraph_style-white.css);
+.element__paragraph {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    grid-area: text;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  margin: 25px 0 32px 21px;
+}

@@ -1,0 +1,11 @@
+.element__like {
+    grid-area: like;
+    width: 21px;
+    height: 18px;
+    border: none;
+    background: none;
+    background-image: url(../../../images/like.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto 20px;
+}
