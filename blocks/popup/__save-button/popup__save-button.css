@@ -3,6 +3,7 @@
 height: 50px;
 margin: 48px auto 0;
 background: #000000;
+color: white;
 border: none;
 border-radius: 2px;
 font-family: Inter;
@@ -11,4 +12,9 @@ font-weight: normal;
 font-size: 18px;
 line-height: 22px;
 text-align: center;
+}
+
+.popup__save-button:hover {
+    opacity   : .5;
+    transition: 0.3s;
 }

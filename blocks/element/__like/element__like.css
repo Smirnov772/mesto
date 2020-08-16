@@ -9,3 +9,7 @@
     background-position: center;
     margin: auto 20px;
 }
+
+.element__like:hover {
+    opacity   : .5;
+    transition: 0.3s;}
