@@ -11,6 +11,13 @@
     border-radius      : 2px;
 }
 
+@media screen and (max-width: 620px) {
+    .profile__add-button {
+      margin: 36px auto 0;
+      width              : 282px;
+    }
+  }
+
 .profile__add-button:hover {
     opacity   : .5;
     transition: 0.3s;

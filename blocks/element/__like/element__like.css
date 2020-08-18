@@ -7,7 +7,7 @@
     background-image: url(../../../images/like.png);
     background-repeat: no-repeat;
     background-position: center;
-    margin: auto 20px;
+    margin: auto;
 }
 
 .element__like:hover {
