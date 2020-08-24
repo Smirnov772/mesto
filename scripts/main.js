@@ -17,6 +17,12 @@ function popupToggle() {
     popup.classList.toggle('popup_disabled');
 }
 
+function openPopup() {
+    nameInput.value = userName.textContent;
+    jobInput.value = userOccupation.textContent;
+    
+    popupToggle();
+}
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -26,7 +32,7 @@ function formSubmitHandler(evt) {
     popupToggle();
 }
 formElement.addEventListener('submit', formSubmitHandler);
-popupOpenButton.addEventListener('click', popupToggle);
+popupOpenButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', popupToggle);
 //popupSaveButton.addEventListener('click', formSubmitHandler);
 console.log(nameInput);

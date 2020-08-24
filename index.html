@@ -13,7 +13,6 @@
     <div class="page__content">
         <header class="header">
             <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
-            <div class="header__line"></div>
         </header>
         <main class="content">
             <section class="profile">
@@ -65,13 +64,13 @@
         </footer>
     </div>
     <div class="popup popup_disabled">
-        <form class="popup__container">
+        <form name="form" class="popup__container">
             <button class="popup__close-button" aria-label="Закрыть попап" type="button"></button>
             <p class="popup__paragraph">Редактировать профиль</p>
             <div class="popup__forms">
-                <input type="text" name="userName" value="Жак-Ив Кусто"
+                <input type="text" name="userName" value=""
                     class="popup__form-input popup__form-input_name">
-                <input type="text" name="userJob" value="Исследователь океана"
+                <input type="text" name="userJob" value=""
                     class="popup__form-input popup__form-input_occupation">
             </div>
             <button class="popup__save-button" type="submit">Сохранить</button>
