@@ -9,4 +9,6 @@
     grid-template-areas: "image image"
     "text like";
     grid-template-columns: 1fr 70px;
+    grid-template-rows: 282px 1fr;
+    overflow: hidden;
 }
