@@ -65,25 +65,25 @@ const addCard = document.querySelector('.popupAddCard');
 const addCardOpen = document.querySelector('.profile__add-button');
 const addCardClose = document.querySelector('.popupAddCard__close-button');
 const addCardSave = document.querySelector('.popupAddCard__save-button');
-const cardsConteiner = document.querySelector('.elements');
+const cardsContainer = document.querySelector('.elements');
+const cardsTemplate = document.querySelector('.cards-template');
 
 const renderCard = () => {
-    const items = initialCards.map(element => {
-        return `        <div class="element">
-        <img class="element__image" src="${element.link}" alt="Картинка">
-        <p class="element__paragraph">${element.name}</p>
-        <button class="element__like" type="button"></button>
-    </div>`
-    }).join(' ');
-
-    cardsConteiner.insertAdjacentHTML('afterbegin', items)
-
-
+    const items = initialCards.map(element => getItems(element));
+  cardsContainer.append(...items)
 };
 
+
+
+const getItems = (data) => {
+const card = cardsTemplate.content.cloneNode(true);
+console.log(card);
+card.querySelector('.element__paragraph').innerText = data.name;
+const cardLink = data.link;
+card.querySelector('.element__image').src = `${cardLink}`;
+return card;
+};
 renderCard();
-
-
 
 let addCardForm = document.querySelector('.popupAddCard__container');
 
@@ -95,26 +95,30 @@ function addCardToggle() {
 
 
 
-initialCards.forEach(function (item) {
+// initialCards.forEach(function (item) {
 
-}
-)
-
-
-function newCard(nameCard, linkCard) {
-    const cardsTemplate = document.querySelector('#cards-template').content;
-    const cardsItem = cardsTemplate.cloneNode(true);
-
-    cardsItem.querySelector('.element__paragraph').textContent = nameCard;
-    cardsItem.querySelector('.element__image').textContent = linkCard;
-
-    cardsItem.querySelector('.element__like').addEventListener('click', function (evt) {
-        console.log(evt);
-    });
-
-    cardsConteiner.append(cardsItem);
-};
+// }
+// )
 
 
-addCardOpen.addEventListener('click', addCardToggle);
-addCardClose.addEventListener('click', addCardToggle);
+
+
+
+
+// function newCard(nameCard, linkCard) {
+//     const cardsTemplate = document.querySelector('#cards-template').content;
+//     const cardsItem = cardsTemplate.cloneNode(true);
+
+//     cardsItem.querySelector('.element__paragraph').textContent = nameCard;
+//     cardsItem.querySelector('.element__image').textContent = linkCard;
+
+//     cardsItem.querySelector('.element__like').addEventListener('click', function (evt) {
+//         console.log(evt);
+//     });
+
+//     cardsConteiner.append(cardsItem);
+// };
+
+
+// addCardOpen.addEventListener('click', addCardToggle);
+// addCardClose.addEventListener('click', addCardToggle);
