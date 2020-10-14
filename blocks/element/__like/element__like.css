@@ -1,10 +1,10 @@
+@import url(./_enable/element__like_enable.css);
+@import url(./_disable/element__like_disable.css);
 .element__like {
     grid-area: like;
     width: 21px;
     height: 18px;
     border: none;
-    background: none;
-    background-image: url(../../../images/like.svg);
     background-repeat: no-repeat;
     background-position: center;
     margin: auto;

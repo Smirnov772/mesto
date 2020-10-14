@@ -16,9 +16,8 @@ const addCardOpen = document.querySelector('.profile__add-button');
 const addCardClose = document.querySelector('.popupAddCard__close-button');
 const addCardSave = document.querySelector('.popupAddCard__save-button');
 const cardsElements = document.querySelector('.elements');
+
 const cardsTemplate = document.querySelector('.cards-template');
-// const templateCardName = cardsTemplate.querySelector('.element__paragraph');
-// const templateCardLink = cardsTemplate.querySelector('.element__image');
 const cardNameFormInput = document.querySelector('.popupAddCard__form-input_place');
 const cardLinkFormInput = document.querySelector('.popupAddCard__form-input_link');
 const initialCards = [
@@ -47,19 +46,6 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-// const addCardForm = document.querySelector('.popupAddCard__container');
-
-
-// const addCard = document.querySelector('.popupAddCard');
-// 
-// 
-// 
-
-// 
-// const cardForm = document.querySelector('.popupAddCard__forms')
-// const popupAddCardName = document.querySelector('.popupAddCard__form-input_place');
-// const popupAddCardLink = document.querySelector('.popupAddCard__form-input_link');
-// 
 
 function popupToggle() {
     popup.classList.toggle('popup_disabled');
@@ -80,13 +66,21 @@ function formSubmitHandler(evt) {
     popupToggle();
 };
 // добавляем карточки из массива
-initialCards.map(function (data) {
+initialCards.forEach(function (data) {
     const cardsTemplateData = cardsTemplate.content.cloneNode(true);
     const cardName = data.name;
     const cardLink = data.link;
     cardsTemplateData.querySelector('.element__paragraph').textContent = cardName;
     cardsTemplateData.querySelector('.element__image').src = cardLink;
-    cardsElements.append(cardsTemplateData);
+    cardsElements.prepend(cardsTemplateData);
+    cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('element__like_enable');
+        console.log(evt);
+    });
+    cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('element__like_disable');
+        console.log(evt);
+    });
 });
 //взять значения из попап и добавить в темплейт через клонирование
 function getCardInput(evt) {
@@ -98,28 +92,34 @@ function getCardInput(evt) {
     cardLinkInput.src = cardLinkFormInput.value;
 
     cardsElements.prepend(newCard);
-
+    cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('element__like_enable');
+        console.log(evt);
+    });
+    cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('element__like_disable');
+        console.log(evt);
+    });
     addCardToggle();
 };
-// const renderCard = () => {
-//     const items = initialCards.map(element => getItems(element));
-//     cardsElements.append(...items)
-// };
 
-
-
-// const getItems = (data) => {
-//     const card = cardsTemplate.content.cloneNode(true);
-//     const cardName = data.name;
-//     card.querySelector('.element__paragraph').innerText = cardName;
-//     const cardLink = data.link;
-//     card.querySelector('.element__image').src = `${cardLink}`;
-//     return card;
-
-// };
-//   console.log(cardName);
-
-
+// переключатель лайка
+// const likeButton = cardsElements.querySelector('.element__like');
+// likeButton.addEventListener('click',
+// function (evt) {
+//     const likeEnable = evt.target;
+//     likeEnable.classList.toggle('element__like_enable');
+//     const likeDisable = evt.target;
+//     likeDisable.classList.toggle('element__like_disable');
+//  });
+// cardsElements.querySelector('.element__like').addEventListener('click', function (evt){
+//     evt.target.classList.toggle('element__like_enable');
+//     console.log(evt);
+// });
+// cardsElements.querySelector('.element__like').addEventListener('click', function (evt){
+//     evt.target.classList.toggle('element__like_disable');
+//     console.log(evt);
+// });
 
 function addCardToggle() {
     cardNameFormInput.value = '';
@@ -130,7 +130,6 @@ function addCardToggle() {
 
 
 
-// renderCard();
 addCardOpen.addEventListener('click', addCardToggle);
 cardsFormContainer.addEventListener('submit', getCardInput);
 addCardClose.addEventListener('click', addCardToggle);
