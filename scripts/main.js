@@ -66,21 +66,34 @@ function formSubmitHandler(evt) {
     popupToggle();
 };
 // добавляем карточки из массива
+const cardRemove = (evt) => {
+    evt.target.closest('.element').remove();
+
+};
+// function cardRemove(evt){
+//     const removeItem = removeButton.event.target.closest('.element');
+// }
+
 initialCards.forEach(function (data) {
-    const cardsTemplateData = cardsTemplate.content.cloneNode(true);
+    const card = cardsTemplate.content.cloneNode(true);
     const cardName = data.name;
     const cardLink = data.link;
-    cardsTemplateData.querySelector('.element__paragraph').textContent = cardName;
-    cardsTemplateData.querySelector('.element__image').src = cardLink;
-    cardsElements.prepend(cardsTemplateData);
+    card.querySelector('.element__paragraph').textContent = cardName;
+    card.querySelector('.element__image').src = cardLink;
+
+
+    const removeButton = card.querySelector('.element__remove');
+    removeButton.addEventListener('click', cardRemove);
+    console.log(removeButton);
+    cardsElements.prepend(card);
     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_enable');
-        console.log(evt);
     });
     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_disable');
-        console.log(evt);
     });
+    return card
+
 });
 //взять значения из попап и добавить в темплейт через клонирование
 function getCardInput(evt) {
@@ -103,31 +116,17 @@ function getCardInput(evt) {
     addCardToggle();
 };
 
-// переключатель лайка
-// const likeButton = cardsElements.querySelector('.element__like');
-// likeButton.addEventListener('click',
-// function (evt) {
-//     const likeEnable = evt.target;
-//     likeEnable.classList.toggle('element__like_enable');
-//     const likeDisable = evt.target;
-//     likeDisable.classList.toggle('element__like_disable');
-//  });
-// cardsElements.querySelector('.element__like').addEventListener('click', function (evt){
-//     evt.target.classList.toggle('element__like_enable');
-//     console.log(evt);
-// });
-// cardsElements.querySelector('.element__like').addEventListener('click', function (evt){
-//     evt.target.classList.toggle('element__like_disable');
-//     console.log(evt);
-// });
-
 function addCardToggle() {
     cardNameFormInput.value = '';
     cardLinkFormInput.value = '';
     popupAddCard.classList.toggle('popupAddCard_disabled');
 
 };
-
+// удаление карточки
+// removeButton.addEventListener('click', function (evt){
+// const removeCard = removeButton.closest('.element');
+// removeButton.remove;
+// });
 
 
 addCardOpen.addEventListener('click', addCardToggle);
