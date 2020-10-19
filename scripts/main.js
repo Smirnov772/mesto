@@ -54,7 +54,7 @@ const initialCards = [
 
 
 function popupToggle() {
-    popup.classList.toggle('popup_disabled');
+    popup.classList.toggle('popup_active');
 };
 
 function openPopup() {
@@ -78,7 +78,7 @@ const cardRemove = (evt) => {
 };
 
 function closedBigImage() {
-    bigImage.classList.toggle('bigImage_disabled');
+    bigImage.classList.toggle('bigImage_active');
 };
 
 
@@ -93,7 +93,7 @@ initialCards.forEach(function (data) {
     removeButton.addEventListener('click', cardRemove);
 
     function openBigImage(data) {
-        bigImage.classList.toggle('bigImage_disabled');
+        bigImage.classList.toggle('bigImage_active');
         bigImageItem.src = data.link;
         document.querySelector('.bigImage__name').textContent = data.name;
     };
@@ -117,7 +117,7 @@ function getCardInput(evt) {
     cardNameInput.textContent = cardNameFormInput.value;
     cardLinkInput.src = cardLinkFormInput.value;
     function openBigImage(data) {
-        bigImage.classList.toggle('bigImage_disabled');
+        bigImage.classList.toggle('bigImage_active');
         bigImageItem.src = cardLinkInput.src;
         document.querySelector('.bigImage__name').textContent = cardNameInput.textContent;
     };
@@ -140,7 +140,7 @@ function getCardInput(evt) {
 function addCardToggle() {
     cardNameFormInput.value = '';
     cardLinkFormInput.value = '';
-    popupAddCard.classList.toggle('popupAddCard_disabled');
+    popupAddCard.classList.toggle('popupAddCard_active');
 
 };
 

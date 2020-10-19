@@ -2,7 +2,7 @@
 @import url(./__container/popup__container.css);
 @import url(./__form-input/popup__form-input.css);
 @import url(./__forms/popup__forms.css);
-@import url(./_disabled/popup_disabled.css);
+@import url(./_disabled/popup_active.css);
 @import url(./__paragraph/popup__paragraph.css);
 @import url(./__save-button/popup__save-button.css);
 
@@ -15,6 +15,5 @@
     background: rgba(0, 0, 0, 0.6);
     opacity   : 0;
     visibility: hidden;
-    transition: opacity .7s ease, visibility .0s linear .7s;
-}
+    transition: opacity .5s ease, visibility .0s ease .5s;
 }

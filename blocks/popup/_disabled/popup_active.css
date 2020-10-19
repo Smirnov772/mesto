@@ -1,5 +1,5 @@
-.popup_disabled {
+.popup_active {
   opacity: 1 !important;
   visibility: visible !important;
-  transition: opacity .7s ease !important;
+  transition: opacity .5s ease !important;
   }
