@@ -10,13 +10,18 @@ let formElement = document.querySelector('.popup__container');
 let nameInput = document.querySelector('.popup__form-input_name');
 let jobInput = document.querySelector('.popup__form-input_occupation');
 
+const bigImage = document.querySelector('.bigImage');
+const bigImageItem = document.querySelector('.bigImage__item');
+const closebuttonBigImage = document.querySelector('.bigImage__close');
+
+
 const popupAddCard = document.querySelector('.popupAddCard')
 const cardsFormContainer = document.querySelector('.popupAddCard__container');
 const addCardOpen = document.querySelector('.profile__add-button');
 const addCardClose = document.querySelector('.popupAddCard__close-button');
 const addCardSave = document.querySelector('.popupAddCard__save-button');
 const cardsElements = document.querySelector('.elements');
-
+const cardItem = cardsElements.querySelector('.element');
 const cardsTemplate = document.querySelector('.cards-template');
 const cardNameFormInput = document.querySelector('.popupAddCard__form-input_place');
 const cardLinkFormInput = document.querySelector('.popupAddCard__form-input_link');
@@ -47,16 +52,18 @@ const initialCards = [
     }
 ];
 
+
 function popupToggle() {
     popup.classList.toggle('popup_disabled');
-}
+};
 
 function openPopup() {
     nameInput.value = userName.textContent;
     jobInput.value = userOccupation.textContent;
 
     popupToggle();
-}
+};
+
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -65,14 +72,15 @@ function formSubmitHandler(evt) {
 
     popupToggle();
 };
-// добавляем карточки из массива
+
 const cardRemove = (evt) => {
     evt.target.closest('.element').remove();
-
 };
-// function cardRemove(evt){
-//     const removeItem = removeButton.event.target.closest('.element');
-// }
+
+function closedBigImage() {
+    bigImage.classList.toggle('bigImage_disabled');
+};
+
 
 initialCards.forEach(function (data) {
     const card = cardsTemplate.content.cloneNode(true);
@@ -82,20 +90,27 @@ initialCards.forEach(function (data) {
     card.querySelector('.element__image').src = cardLink;
 
 
+
     const removeButton = card.querySelector('.element__remove');
     removeButton.addEventListener('click', cardRemove);
-    console.log(removeButton);
+
+    function openBigImage(data) {
+        bigImage.classList.toggle('bigImage_disabled');
+        bigImageItem.src = data.link;
+        document.querySelector('.bigImage__name').textContent = data.name;
+    };
+    card.querySelector('.element__image').addEventListener('click', () => openBigImage(data));
     cardsElements.prepend(card);
+
     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_enable');
     });
     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_disable');
     });
-    return card
 
 });
-//взять значения из попап и добавить в темплейт через клонирование
+
 function getCardInput(evt) {
     evt.preventDefault();
     const newCard = cardsTemplate.content.cloneNode(true);
@@ -103,7 +118,12 @@ function getCardInput(evt) {
     const cardLinkInput = newCard.querySelector('.element__image');
     cardNameInput.textContent = cardNameFormInput.value;
     cardLinkInput.src = cardLinkFormInput.value;
-
+    function openBigImage(data) {
+        bigImage.classList.toggle('bigImage_disabled');
+        bigImageItem.src = cardLinkInput.src;
+        document.querySelector('.bigImage__name').textContent = cardNameInput.textContent;
+    };
+    newCard.querySelector('.element__image').addEventListener('click', openBigImage);
     cardsElements.prepend(newCard);
     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_enable');
@@ -111,9 +131,12 @@ function getCardInput(evt) {
     });
     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_disable');
-        console.log(evt);
+
     });
     addCardToggle();
+
+
+
 };
 
 function addCardToggle() {
@@ -122,13 +145,8 @@ function addCardToggle() {
     popupAddCard.classList.toggle('popupAddCard_disabled');
 
 };
-// удаление карточки
-// removeButton.addEventListener('click', function (evt){
-// const removeCard = removeButton.closest('.element');
-// removeButton.remove;
-// });
 
-
+closebuttonBigImage.addEventListener('click', closedBigImage);
 addCardOpen.addEventListener('click', addCardToggle);
 cardsFormContainer.addEventListener('submit', getCardInput);
 addCardClose.addEventListener('click', addCardToggle);
