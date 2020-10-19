@@ -3,17 +3,15 @@ const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close-button');
 const popupSaveButton = document.querySelector('.popup__save-button');
 
-
-let userName = document.querySelector('.profile__name');
-let userOccupation = document.querySelector('.profile__occupation');
-let formElement = document.querySelector('.popup__container');
-let nameInput = document.querySelector('.popup__form-input_name');
-let jobInput = document.querySelector('.popup__form-input_occupation');
+const userName = document.querySelector('.profile__name');
+const userOccupation = document.querySelector('.profile__occupation');
+const formElement = document.querySelector('.popup__container');
+const nameInput = document.querySelector('.popup__form-input_name');
+const jobInput = document.querySelector('.popup__form-input_occupation');
 
 const bigImage = document.querySelector('.bigImage');
 const bigImageItem = document.querySelector('.bigImage__item');
 const closebuttonBigImage = document.querySelector('.bigImage__close');
-
 
 const popupAddCard = document.querySelector('.popupAddCard')
 const cardsFormContainer = document.querySelector('.popupAddCard__container');
@@ -52,7 +50,6 @@ const initialCards = [
     }
 ];
 
-
 function popupToggle() {
     popup.classList.toggle('popup_active');
 };
@@ -63,7 +60,6 @@ function openPopup() {
 
     popupToggle();
 };
-
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -80,7 +76,6 @@ const cardRemove = (evt) => {
 function closedBigImage() {
     bigImage.classList.toggle('bigImage_active');
 };
-
 
 initialCards.forEach(function (data) {
     const card = cardsTemplate.content.cloneNode(true);
@@ -132,8 +127,6 @@ function getCardInput(evt) {
 
     });
     addCardToggle();
-
-
 
 };
 
