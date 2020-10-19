@@ -13,4 +13,8 @@
     top       : 0;
     bottom    : 0;
     background: rgba(0, 0, 0, 0.6);
+    opacity   : 0;
+    visibility: hidden;
+    transition: opacity .7s ease, visibility .0s linear .7s;
+}
 }

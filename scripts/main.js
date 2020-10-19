@@ -89,8 +89,6 @@ initialCards.forEach(function (data) {
     card.querySelector('.element__paragraph').textContent = cardName;
     card.querySelector('.element__image').src = cardLink;
 
-
-
     const removeButton = card.querySelector('.element__remove');
     removeButton.addEventListener('click', cardRemove);
 
