@@ -22,9 +22,7 @@ const cardLinkFormInput = popupAddCard.querySelector('.popupAddCard__form-input_
 const cardNameFormInput = popupAddCard.querySelector('.popupAddCard__form-input_place');
 
 const cardsElements = document.querySelector('.elements');
-// const cardItem = cardsElements.querySelector('.element');
 const cardsTemplate = document.querySelector('.cards-template');
-
 
 const initialCards = [
     {
@@ -53,8 +51,6 @@ const initialCards = [
     }
 ];
 
-
-
 function togglePopup(popup) {
     popup.classList.toggle('popup_active');
     cardNameFormInput.value = '';
@@ -76,7 +72,6 @@ function formSubmitHandler(evt) {
     togglePopup(popup);
 };
 
-
 const handleCardFormSubmit = (event) => {
     event.preventDefault();
 
@@ -88,9 +83,6 @@ const handleCardFormSubmit = (event) => {
     cardsElements.prepend(cardItem);
     togglePopup(popupAddCard);
 };
-
-
-
 
 const getCard = (dataCard) => {
     const cardElement = cardsTemplate.cloneNode(true).content;
@@ -127,8 +119,6 @@ initialCards.forEach((data) => {
     const cardItem = getCard(data);
     cardsElements.prepend(cardItem);
 });
-
-
 
 // Слушатели userPopup
 popupOpenButton.addEventListener('click', openPopup);
