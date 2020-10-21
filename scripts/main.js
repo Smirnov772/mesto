@@ -115,7 +115,7 @@ const cardRemove = (evt) => {
 
     return cardElement
 };
-// Открытие больной картинки
+// Открытие большой картинки
 const openBigImage = (dataBigImage) => {
     bigImageItem.src = dataBigImage.link;
     bigImageItem.alt = `Изображение ${dataBigImage.title}`;
@@ -140,95 +140,4 @@ openAddCard.addEventListener('click', () => togglePopup(popupAddCard));
 submitCardForm.addEventListener('submit', handleCardFormSubmit);
 closeAddCard.addEventListener('click', () => togglePopup(popupAddCard));
 
-
-
-
-
-
-
-
-
-// function closedBigImage() {
-//     bigImage.classList.toggle('bigImage_active');
-// };
-
-// function createCard (data) {
-
-
-// }
-// initialCards.forEach(function (data) {
-//     const card = cardsTemplate.cloneNode(true).content;
-//     const cardName = card.querySelector('.element__paragraph');
-//     const cardLink = card.querySelector('.element__image');
-//     cardName.textContent = data.name;
-//     cardLink.src = data.link;
-
-//     const removeButton = card.querySelector('.element__remove');
-//     removeButton.addEventListener('click', cardRemove);
-
-
-//     card.querySelector('.element__image').addEventListener('click', () => openBigImage(data));
-//     cardsElements.prepend(card);
-
-//     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
-//         evt.target.classList.toggle('element__like_enable');
-//     });
-//     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
-//         evt.target.classList.toggle('element__like_disable');
-//     });
-
-// });
-// function getCardInput(evt) {
-//     evt.preventDefault();
-//     const newCard = cardsTemplate.content.cloneNode(true);
-//     newCard.querySelector('.element__paragraph').textContent = cardNameFormInput.value;
-//     newCard.querySelector('.element__image').src = cardLinkFormInput.value;
-//     cardsElements.prepend(newCard);
-//     addCardToggle();
-
-// };
-// submitCardForm.addEventListener('submit', getCardInput);
-
-//     function openBigImage(data) {
-//         bigImage.classList.toggle('bigImage_active');
-//         bigImageItem.src = data.link;
-//         document.querySelector('.bigImage__name').textContent = data.name;
-//     };
-// function getCardInput(evt) {
-//     evt.preventDefault();
-    // const newCard = cardsTemplate.content.cloneNode(true);
-    // const cardNameInput = newCard.querySelector('.element__paragraph');
-    // const cardLinkInput = newCard.querySelector('.element__image');
-    // cardNameInput.textContent = cardNameFormInput.value;
-    // cardLinkInput.src = cardLinkFormInput.value;
-//     function openBigImage(data) {
-//         bigImage.classList.toggle('bigImage_active');
-//         bigImageItem.src = cardLinkInput.src;
-//         document.querySelector('.bigImage__name').textContent = cardNameInput.textContent;
-//     };
-//     newCard.querySelector('.element__image').addEventListener('click', openBigImage);
-//     cardsElements.prepend(newCard);
-//     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
-//         evt.target.classList.toggle('element__like_enable');
-//         console.log(evt);
-//     });
-//     cardsElements.querySelector('.element__like').addEventListener('click', function (evt) {
-//         evt.target.classList.toggle('element__like_disable');
-
-//     });
-//     addCardToggle();
-
-// };
-
-// function addCardToggle() {
-//     cardNameFormInput.value = '';
-//     cardLinkFormInput.value = '';
-//     popupAddCard.classList.toggle('popupAddCard_active');
-
-// };
-
-// closebuttonBigImage.addEventListener('click', closedBigImage);
-// openAddCard.addEventListener('click', addCardToggle);
-// // submitCardForm.addEventListener('submit', getCardInput);
-// closeAddCard.addEventListener('click', addCardToggle);
-
+closebuttonBigImage.addEventListener('click', () => togglePopup(bigImage));
