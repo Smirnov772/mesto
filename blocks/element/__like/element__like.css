@@ -1,15 +1,17 @@
 @import url(./_enable/element__like_enable.css);
 @import url(./_disable/element__like_disable.css);
+
 .element__like {
-    grid-area: like;
-    width: 21px;
-    height: 18px;
-    border: none;
-    background-repeat: no-repeat;
+    grid-area          : like;
+    width              : 21px;
+    height             : 18px;
+    border             : none;
+    background-repeat  : no-repeat;
     background-position: center;
-    margin: auto;
+    margin             : auto;
 }
 
 .element__like:hover {
     opacity   : .5;
-    transition: 0.3s;}
+    transition: 0.3s;
+}

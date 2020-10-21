@@ -1,17 +1,17 @@
 .popup__close-button {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: -35px;
-  right: -35px;
-  background: none;
-  background-image: url(../../../images/CloseIcon.svg);
-  background-repeat: no-repeat;
-  background-size: 50px;
+  width              : 40px;
+  height             : 40px;
+  position           : absolute;
+  top                : -35px;
+  right              : -35px;
+  background         : none;
+  background-image   : url(../../../images/CloseIcon.svg);
+  background-repeat  : no-repeat;
+  background-size    : 50px;
   background-position: center;
-  border: none;
+  border             : none;
 }
 
-  .popup__close-button:hover{
-    opacity: .5;
-  }
+.popup__close-button:hover {
+  opacity: .5;
+}
