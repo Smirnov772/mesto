@@ -11,6 +11,7 @@ const jobInput = formElement.querySelector('.popup__form-input_occupation');
 
 const bigImage = document.querySelector('.bigImage');
 const bigImageItem = document.querySelector('.bigImage__item');
+const bigImageName = bigImage.querySelector('.bigImage__name');
 const closebuttonBigImage = document.querySelector('.bigImage__close');
 
 const popupAddCard = document.querySelector('.popupAddCard')
@@ -110,8 +111,8 @@ const cardRemove = (evt) => {
 // Открытие большой картинки
 const openBigImage = (dataBigImage) => {
     bigImageItem.src = dataBigImage.link;
-    bigImageItem.alt = `Изображение ${dataBigImage.title}`;
-
+    bigImageItem.alt = `Изображение ${dataBigImage.name}`;
+    bigImageName.textContent = dataBigImage.name;
     togglePopup(bigImage);
 };
 
