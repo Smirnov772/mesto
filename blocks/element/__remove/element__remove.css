@@ -13,4 +13,5 @@
 
 .element__remove:hover {
     opacity: .5;
+    cursor : pointer;
 }

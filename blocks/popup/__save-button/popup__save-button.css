@@ -18,4 +18,5 @@
 .popup__save-button:hover {
     opacity   : .5;
     transition: 0.3s;
+    cursor    : pointer;
 }

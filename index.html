@@ -34,37 +34,37 @@
         </footer>
     </div>
 
-    <div class="popup">
+    <div class="popup popup-user">
         <form name="form" class="popup__container">
             <button class="popup__close-button" aria-label="Закрыть попап" type="button"></button>
             <p class="popup__paragraph">Редактировать профиль</p>
             <div class="popup__forms">
-                <input type="text" name="userName" value="" class="popup__form-input popup__form-input_name">
-                <input type="text" name="userJob" value="" class="popup__form-input popup__form-input_occupation">
+                <input type="text" name="userName" value="" placeholder="Жак-Ив Кусто"  class="popup__form-input popup__form-input_name">
+                <input type="text" name="userJob" value="" placeholder="Исследователь океана" class="popup__form-input popup__form-input_occupation">
             </div>
             <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
     </div>
 
-    <div class="popup popupAddCard">
-        <form name="form" class="popupAddCard__container popup__container">
-            <button class="popupAddCard__close-button popup__close-button" aria-label="Закрыть карточку"
+    <div class="popup popup-add-card">
+        <form name="form" class="popup-add-card__container popup__container">
+            <button class="popup-add-card__close-button popup__close-button" aria-label="Закрыть карточку"
                 type="button"></button>
-            <p class="popupAddCard__paragraph popup__paragraph">Добавить место</p>
-            <div class="popupAddCard__forms popup__forms">
-                <input type="text" name="cadrName" value="" class="popupAddCard__form-input_place popup__form-input">
-                <input type="text" name="popupAddCardLink" value=""
-                    class=" popupAddCard__form-input_link popup__form-input">
+            <p class="popup-add-card__paragraph popup__paragraph">Добавить место</p>
+            <div class="popup-add-card__forms popup__forms">
+                <input type="text" name="cadrName" value="" placeholder="Имя нового места" class="popup-add-card__form-input_place popup__form-input">
+                <input type="text" name="popup-add-cardLink" value="" placeholder="Ссылка на изображение"
+                    class=" popup-add-card__form-input_link popup__form-input">
             </div>
-            <button class="popupAddCard__save-button popup__save-button" type="submit">Создать</button>
+            <button class="popup-add-card__save-button popup__save-button" type="submit">Создать</button>
         </form>
     </div>
 
-    <div class="bigImage popup">
-        <div class="bigImage__content">
-            <img class="bigImage__item" src="#" alt="#">
-            <p class="bigImage__name"></p>
-            <button class="bigImage__close" aria-label="Закрыть картинку" type="button"></button>
+    <div class="big-image popup">
+        <div class="big-image__content">
+            <img class="big-image__item" src="#" alt="#">
+            <p class="big-image__name"></p>
+            <button class="big-image__close" aria-label="Закрыть картинку" type="button"></button>
         </div>
     </div>
     <template class="cards-template">

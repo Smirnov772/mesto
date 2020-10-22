@@ -21,4 +21,5 @@
 .profile__add-button:hover {
   opacity   : .5;
   transition: 0.3s;
+  cursor    : pointer;
 }

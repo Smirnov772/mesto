@@ -1,4 +1,4 @@
-.bigImage__close {
+.big-image__close {
   width              : 40px;
   height             : 40px;
   position           : absolute;
@@ -12,6 +12,7 @@
   border             : none;
 }
 
-.bigImage__closen:hover {
+.big-image__closen:hover {
   opacity: .5;
+  cursor: pointer;
 }
