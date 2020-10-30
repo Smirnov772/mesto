@@ -1,3 +1,4 @@
+const popupItem = document.querySelector('.popup');
 const popupUser = document.querySelector('.popup-user');
 const popupUserOpenButton = document.querySelector('.profile__edit-button');
 const popupUserCloseButton = document.querySelector('.popup__close-button');
@@ -50,15 +51,44 @@ const initialCards = [
     }
 ];
 
-function togglePopup(popup) {
-    popup.classList.toggle('popup_active');
+// const addPopup = (popupType) => {
+//     popupType.classList.add('popup_opened');
+//     document.addEventListener('keydown', (evt) => {
+//       if (evt.key === 'Escape') {
+//         removePopup(popupType);
+//       };
+//     });
+//   }
+//    //Ф-ция закрытия попапа popup_opened//
+//    const removePopup = (popupType) => {
+//     popupType.classList.remove('popup_opened');
+//    }
+
+function openedPopup(popup) {
+    popup.classList.add('popup_active');
+
+    document.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Escape') {
+            closedPopup(popup);
+        };
+    });
+    popup.addEventListener('click', () => closedPopup(popup) );
 }
 
-function openPopupUser() {
+function closedPopup(popup) {
+    popup.classList.remove('popup_active');
+    document.removeEventListener('keydown', (evt) => {
+        if (evt.key === 'Escape') {
+        };
+    });
+}
+
+function openedPopupUser() {
     nameInput.value = userName.textContent;
     jobInput.value = userOccupation.textContent;
 
-    togglePopup(popupUser);
+    openedPopup(popupUser);
+
 }
 
 function handlerUserFormSubmit(event) {
@@ -66,7 +96,7 @@ function handlerUserFormSubmit(event) {
     userName.textContent = nameInput.value;
     userOccupation.textContent = jobInput.value;
 
-    togglePopup(popupUser);
+    closedPopup(popupUser);
 }
 
 const handleCardFormSubmit = (event) => {
@@ -78,7 +108,7 @@ const handleCardFormSubmit = (event) => {
     });
 
     cardsElements.prepend(cardItem);
-    togglePopup(popupAddCard);
+    closedPopup(popupAddCard);
 };
 
 const getCard = (dataCard) => {
@@ -109,7 +139,7 @@ const openBigImage = (dataBigImage) => {
     bigImageItem.alt = `Изображение ${dataBigImage.name}`;
     bigImageName.textContent = dataBigImage.name;
 
-    togglePopup(bigImage);
+    openedPopup(bigImage);
 };
 
 
@@ -120,17 +150,32 @@ initialCards.forEach((data) => {
 });
 
 // Слушатели userPopup
-popupUserOpenButton.addEventListener('click', openPopupUser);
-popupUserCloseButton.addEventListener('click', () => togglePopup(popupUser));
+popupUserOpenButton.addEventListener('click', openedPopupUser);
+popupUserCloseButton.addEventListener('click', () => closedPopup(popupUser));
 formElement.addEventListener('submit', handlerUserFormSubmit);
 
 // Слушатели карточек
 openAddCard.addEventListener('click', () => {
     cardNameFormInput.value = '';
     cardLinkFormInput.value = '';
-    togglePopup(popupAddCard)
+    openedPopup(popupAddCard)
 });
-submitCardForm.addEventListener('submit', handleCardFormSubmit);
-closeAddCard.addEventListener('click', () => togglePopup(popupAddCard));
 
-closebuttonBigImage.addEventListener('click', () => togglePopup(bigImage));
+submitCardForm.addEventListener('submit', handleCardFormSubmit);
+closeAddCard.addEventListener('click', () => closedPopup(popupAddCard));
+
+closebuttonBigImage.addEventListener('click', () => closedPopup(bigImage));
+
+
+// const closedPopupBackground = (event) => {
+//     popupItem = event.curentTarget;
+//     if (event.target === popupItem) {
+//         return
+//     };
+//     closedPopup(event);
+// };
+
+
+// popupItem.addEventListener('click', ()=> closedPopupBackground(popupItem));
+
+

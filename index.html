@@ -35,29 +35,38 @@
     </div>
 
     <div class="popup popup-user">
-        <form name="form" class="popup__container">
+        <div class="popup__container">
             <button class="popup__close-button" aria-label="Закрыть попап" type="button"></button>
             <p class="popup__paragraph">Редактировать профиль</p>
-            <div class="popup__forms">
-                <input type="text" name="userName" value="" placeholder="Жак-Ив Кусто"  class="popup__form-input popup__form-input_name">
-                <input type="text" name="userJob" value="" placeholder="Исследователь океана" class="popup__form-input popup__form-input_occupation">
-            </div>
-            <button class="popup__save-button" type="submit">Сохранить</button>
-        </form>
+            <form name="userForm" class="popup__forms" novalidate>
+                <input required minlength="2" maxlength="40" type="text" id="userName" name="userName" value=""
+                    placeholder="Жак-Ив Кусто" class="popup__form-input popup__form-input_name">
+                <span id="userName-error" class="popup__input_type_error"></span>
+                <input required minlength="2" maxlength="200" type="text" id="userJob" name="userJob" value=""
+                    placeholder="Исследователь океана" class="popup__form-input popup__form-input_occupation">
+                <span id="userJob-error" class=""></span>
+                <button class="popup__save-button" type="submit">Сохранить</button>
+            </form>
+
+        </div>
     </div>
 
     <div class="popup popup-add-card">
-        <form name="form" class="popup-add-card__container popup__container">
+        <div class="popup-add-card__container popup__container">
             <button class="popup-add-card__close-button popup__close-button" aria-label="Закрыть карточку"
                 type="button"></button>
             <p class="popup-add-card__paragraph popup__paragraph">Добавить место</p>
-            <div class="popup-add-card__forms popup__forms">
-                <input type="text" name="cadrName" value="" placeholder="Имя нового места" class="popup-add-card__form-input_place popup__form-input">
-                <input type="text" name="popup-add-cardLink" value="" placeholder="Ссылка на изображение"
-                    class=" popup-add-card__form-input_link popup__form-input">
-            </div>
-            <button class="popup-add-card__save-button popup__save-button" type="submit">Создать</button>
-        </form>
+            <form name="addCard" class="popup-add-card__forms popup__forms" novalidate>
+                <input required minlength="1" maxlength="40" id="cardName" type="text" name="cadrName" value=""
+                    placeholder="Имя нового места" class="popup-add-card__form-input_place popup__form-input">
+                <span id="cardName-error" class="popup__input_type_error"></span>
+                <input required id="cardLink" type="url" name="Link" value="" placeholder="Ссылка на изображение"
+                    class="popup-add-card__form-input_link popup__form-input">
+                <span id="cardLink-error" class="popup__input_type_error"></span>
+                <button class="popup-add-card__save-button popup__save-button" type="submit">Создать</button>
+            </form>
+
+        </div>
     </div>
 
     <div class="big-image popup">
@@ -76,6 +85,7 @@
         </div>
     </template>
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+@import url(./_desabled/popup__save-button_disabled.css);
+
 .popup__save-button {
     max-width    : 358px;
     width        : 100%;
