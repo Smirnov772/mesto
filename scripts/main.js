@@ -63,16 +63,16 @@ const initialCards = [
 //    const removePopup = (popupType) => {
 //     popupType.classList.remove('popup_opened');
 //    }
-
-function openedPopup(popup) {
-    popup.classList.add('popup_active');
-
-    document.addEventListener('keydown', (evt) => {
+    const removePopup = (popup) => document.addEventListener('keydown', (evt) => {
         if (evt.key === 'Escape') {
             closedPopup(popup);
         };
     });
-    popup.addEventListener('click', () => closedPopup(popup) );
+function openedPopup(popup) {
+    popup.classList.add('popup_active');
+    removePopup(popup);
+
+    popup.addEventListener('click', () => closedPopup(popup));
 }
 
 function closedPopup(popup) {
