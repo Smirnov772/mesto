@@ -63,24 +63,23 @@ const initialCards = [
 //    const removePopup = (popupType) => {
 //     popupType.classList.remove('popup_opened');
 //    }
-    const removePopup = (popup) => document.addEventListener('keydown', (evt) => {
-        if (evt.key === 'Escape') {
-            closedPopup(popup);
-        };
-    });
+const handLeEscUp = (event) => {
+    event.preventDefault();
+    const activePopup = document.querySelector('.popup_active');
+    if (event.key === 'Escape') {
+        closedPopup(activePopup);
+    };
+}
 function openedPopup(popup) {
+    document.addEventListener('keydown', handLeEscUp);
     popup.classList.add('popup_active');
-    removePopup(popup);
-
     popup.addEventListener('click', () => closedPopup(popup));
 }
 
 function closedPopup(popup) {
-    popup.classList.remove('popup_active');
-    document.removeEventListener('keydown', (evt) => {
-        if (evt.key === 'Escape') {
-        };
-    });
+
+    document.removeEventListener('keydown', handLeEscUp);
+     popup.classList.remove('popup_active');
 }
 
 function openedPopupUser() {
