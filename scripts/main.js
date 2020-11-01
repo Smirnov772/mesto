@@ -65,7 +65,7 @@ const initialCards = [
 //закрытие попапов <
 const closedOverlayPopup = (event) => {
   const activePopup = document.querySelector(".popup_active");
-  if (event.target !== event.currentTarget) return;
+  if (event.target !== event.currentTarget) return
   closedPopup(activePopup);
 };
 popupUser.addEventListener("click", closedOverlayPopup);
