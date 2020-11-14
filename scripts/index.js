@@ -1,3 +1,6 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 const popupItem = document.querySelector(".popup");
 const popupUser = document.querySelector(".popup-user");
 const popupUserOpenButton = document.querySelector(".profile__edit-button");
@@ -27,8 +30,8 @@ const cardNameFormInput = popupAddCard.querySelector(
   ".popup-add-card__form-input_place"
 );
 
+// const cardsTemplate = document.querySelector(".cards-template");
 const cardsElements = document.querySelector(".elements");
-const cardsTemplate = document.querySelector(".cards-template");
 
 const initialCards = [
   {
@@ -118,29 +121,31 @@ const handleCardFormSubmit = (event) => {
   closedPopup(popupAddCard);
 };
 
-const getCard = (dataCard) => {
-  const cardElement = cardsTemplate.cloneNode(true).content;
-  const cardName = cardElement.querySelector(".element__paragraph");
-  const cardImage = cardElement.querySelector(".element__image");
+const getCard = (data) => {
+  const card = new Card (data, ".cards-template");
+  card.renderCard(cardsElements);
+  // const cardElement = cardsTemplate.cloneNode(true).content;
+  // const cardName = cardElement.querySelector(".element__paragraph");
+  // const cardImage = cardElement.querySelector(".element__image");
 
-  cardImage.addEventListener("click", () => openBigImage(dataCard));
-  cardName.textContent = dataCard.name;
-  cardImage.src = dataCard.link;
-  cardImage.alt = `Изображение ${dataCard.name}`;
+  // cardImage.addEventListener("click", () => openBigImage(dataCard));
+  // cardName.textContent = dataCard.name;
+  // cardImage.src = dataCard.link;
+  // cardImage.alt = `Изображение ${dataCard.name}`;
 
-  cardElement
-    .querySelector(".element__like")
-    .addEventListener("click", function (event) {
-      event.target.classList.toggle("element__like_enable");
-    });
+  // cardElement
+  //   .querySelector(".element__like")
+  //   .addEventListener("click", function (event) {
+  //     event.target.classList.toggle("element__like_enable");
+  //   });
 
-  const cardRemove = (event) => {
-    event.target.closest(".element").remove();
-  };
-  const removeButton = cardElement.querySelector(".element__remove");
-  removeButton.addEventListener("click", cardRemove);
+  // const cardRemove = (event) => {
+  //   event.target.closest(".element").remove();
+  // };
+  // const removeButton = cardElement.querySelector(".element__remove");
+  // removeButton.addEventListener("click", cardRemove);
 
-  return cardElement;
+  // return cardElement;
 };
 // Открытие большой картинки
 const openBigImage = (dataBigImage) => {
@@ -151,10 +156,12 @@ const openBigImage = (dataBigImage) => {
   openedPopup(bigImage);
 };
 
-initialCards.forEach((data) => {
-  const cardItem = getCard(data);
-  cardsElements.prepend(cardItem);
-});
+
+initialCards.forEach(getCard) // => {
+  // const cardItem = getCard(data);
+  // cardsElements.prepend(cardItem);
+// });
+
 
 // Слушатели userPopup
 popupUserOpenButton.addEventListener("click", openedPopupUser);
@@ -172,13 +179,3 @@ submitCardForm.addEventListener("submit", handleCardFormSubmit);
 closeAddCard.addEventListener("click", () => closedPopup(popupAddCard));
 
 closebuttonBigImage.addEventListener("click", () => closedPopup(bigImage));
-
-// const closedPopupBackground = (event) => {
-//     popupItem = event.curentTarget;
-//     if (event.target === popupItem) {
-//         return
-//     };
-//     closedPopup(event);
-// };
-
-// popupItem.addEventListener('click', ()=> closedPopupBackground(popupItem));
