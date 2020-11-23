@@ -1,7 +1,6 @@
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
-const popupItem = document.querySelector(".popup");
 const popupUser = document.querySelector(".popup-user");
 const popupUserOpenButton = document.querySelector(".profile__edit-button");
 const popupUserCloseButton = document.querySelector(".popup__close-button");
@@ -65,10 +64,11 @@ const initialCards = [
       "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
 //закрытие попапов <
 const closedOverlayPopup = (event) => {
   const activePopup = document.querySelector(".popup_active");
-  if (event.target !== event.currentTarget) return
+  if (event.target !== event.currentTarget) return;
   closedPopup(activePopup);
 };
 popupUser.addEventListener("click", closedOverlayPopup);
@@ -101,8 +101,33 @@ function openedPopupUser() {
   openedPopup(popupUser);
 }
 
+
+
+const userFormValid = new FormValidator ({
+  formSelector: ".popup__forms",
+  inputSelector: ".popup__form-input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+}, "#userForm");
+
+
+const cardValid = new FormValidator ({
+  formSelector: ".popup__forms",
+  inputSelector: ".popup__form-input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: ".popup__save-button_disabled",
+  inputErrorClass: ".popup__input_type_error",
+  errorClass: ".popup__error_visible",
+}, "#addCard");
+
+
+
+
 function handlerUserFormSubmit(event) {
   event.preventDefault();
+
   userName.textContent = nameInput.value;
   userOccupation.textContent = jobInput.value;
 
@@ -117,13 +142,14 @@ const handleCardFormSubmit = (event) => {
     link: cardLinkFormInput.value,
   });
 
-  cardsElements.prepend(cardItem);
+  // cardsElements.prepend(cardItem);
   closedPopup(popupAddCard);
 };
 
 const getCard = (data) => {
-  const card = new Card (data, ".cards-template");
+  const card = new Card(data, ".cards-template", ()=>openBigImage(data));
   card.renderCard(cardsElements);
+
   // const cardElement = cardsTemplate.cloneNode(true).content;
   // const cardName = cardElement.querySelector(".element__paragraph");
   // const cardImage = cardElement.querySelector(".element__image");
@@ -148,23 +174,32 @@ const getCard = (data) => {
   // return cardElement;
 };
 // Открытие большой картинки
-const openBigImage = (dataBigImage) => {
-  bigImageItem.src = dataBigImage.link;
-  bigImageItem.alt = `Изображение ${dataBigImage.name}`;
-  bigImageName.textContent = dataBigImage.name;
+const openBigImage = (data) => {
+  bigImageItem.src = data.link;
+  bigImageItem.alt = `Изображение ${data.name}`;
+  bigImageName.textContent = data.name;
 
   openedPopup(bigImage);
 };
 
+// initialCards.forEach(() => {
+//   const card = new Card(data.name, data.link);
+//   const cardElement = card.renderCard();
 
-initialCards.forEach(getCard) // => {
-  // const cardItem = getCard(data);
-  // cardsElements.prepend(cardItem);
+//   // Добавляем в DOM
+//   document.querySelector("elements").append(cardElement);
+// });
+initialCards.forEach(getCard); // => {
+//   const cardItem = getCard(data);
+//   cardsElements.prepend(cardItem);
+
 // });
 
-
 // Слушатели userPopup
-popupUserOpenButton.addEventListener("click", openedPopupUser);
+popupUserOpenButton.addEventListener("click", () => {
+openedPopupUser();
+userFormValid.enableValidation();});
+
 popupUserCloseButton.addEventListener("click", () => closedPopup(popupUser));
 formElement.addEventListener("submit", handlerUserFormSubmit);
 
@@ -173,6 +208,7 @@ openAddCard.addEventListener("click", () => {
   cardNameFormInput.value = "";
   cardLinkFormInput.value = "";
   openedPopup(popupAddCard);
+  cardValid.enableValidation();
 });
 
 submitCardForm.addEventListener("submit", handleCardFormSubmit);
