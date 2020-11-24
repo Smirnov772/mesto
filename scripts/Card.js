@@ -5,7 +5,6 @@ export class Card {
     this.link = data.link;
     this.alt = this.name;
     this._template = document.querySelector(templateSelector);
-    //   .content.querySelector(".element");
   }
 
   _getTemplate() {

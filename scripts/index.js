@@ -29,7 +29,6 @@ const cardNameFormInput = popupAddCard.querySelector(
   ".popup-add-card__form-input_place"
 );
 
-// const cardsTemplate = document.querySelector(".cards-template");
 const cardsElements = document.querySelector(".elements");
 
 const initialCards = [
@@ -65,6 +64,26 @@ const initialCards = [
   },
 ];
 
+const enableValidation = {
+  formSelector: ".popup__forms",
+  inputSelector: ".popup__form-input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
+const userFormValid = new FormValidator(enableValidation, "#userForm");
+
+const cardValid = new FormValidator(enableValidation, "#addCard");
+
+const getCard = (data) => {
+  const card = new Card(data, ".cards-template", () => openBigImage(data));
+  card.renderCard(cardsElements);
+};
+
+initialCards.forEach(getCard);
+
 //закрытие попапов <
 const closedOverlayPopup = (event) => {
   const activePopup = document.querySelector(".popup_active");
@@ -85,12 +104,12 @@ const handLeEscUp = (event) => {
 };
 popupUser.addEventListener("click", closedOverlayPopup);
 function openedPopup(popup) {
-  document.addEventListener("keydown", handLeEscUp);
+  document.addEventListener("keyup", handLeEscUp);
   popup.classList.add("popup_active");
 }
 
 function closedPopup(popup) {
-  document.removeEventListener("keydown", handLeEscUp);
+  document.removeEventListener("keyup", handLeEscUp);
   popup.classList.remove("popup_active");
 }
 
@@ -100,30 +119,6 @@ function openedPopupUser() {
 
   openedPopup(popupUser);
 }
-
-
-
-const userFormValid = new FormValidator ({
-  formSelector: ".popup__forms",
-  inputSelector: ".popup__form-input",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: "popup__save-button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-}, "#userForm");
-
-
-const cardValid = new FormValidator ({
-  formSelector: ".popup__forms",
-  inputSelector: ".popup__form-input",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: ".popup__save-button_disabled",
-  inputErrorClass: ".popup__input_type_error",
-  errorClass: ".popup__error_visible",
-}, "#addCard");
-
-
-
 
 function handlerUserFormSubmit(event) {
   event.preventDefault();
@@ -142,37 +137,9 @@ const handleCardFormSubmit = (event) => {
     link: cardLinkFormInput.value,
   });
 
-  // cardsElements.prepend(cardItem);
   closedPopup(popupAddCard);
 };
 
-const getCard = (data) => {
-  const card = new Card(data, ".cards-template", ()=>openBigImage(data));
-  card.renderCard(cardsElements);
-
-  // const cardElement = cardsTemplate.cloneNode(true).content;
-  // const cardName = cardElement.querySelector(".element__paragraph");
-  // const cardImage = cardElement.querySelector(".element__image");
-
-  // cardImage.addEventListener("click", () => openBigImage(dataCard));
-  // cardName.textContent = dataCard.name;
-  // cardImage.src = dataCard.link;
-  // cardImage.alt = `Изображение ${dataCard.name}`;
-
-  // cardElement
-  //   .querySelector(".element__like")
-  //   .addEventListener("click", function (event) {
-  //     event.target.classList.toggle("element__like_enable");
-  //   });
-
-  // const cardRemove = (event) => {
-  //   event.target.closest(".element").remove();
-  // };
-  // const removeButton = cardElement.querySelector(".element__remove");
-  // removeButton.addEventListener("click", cardRemove);
-
-  // return cardElement;
-};
 // Открытие большой картинки
 const openBigImage = (data) => {
   bigImageItem.src = data.link;
@@ -182,23 +149,11 @@ const openBigImage = (data) => {
   openedPopup(bigImage);
 };
 
-// initialCards.forEach(() => {
-//   const card = new Card(data.name, data.link);
-//   const cardElement = card.renderCard();
-
-//   // Добавляем в DOM
-//   document.querySelector("elements").append(cardElement);
-// });
-initialCards.forEach(getCard); // => {
-//   const cardItem = getCard(data);
-//   cardsElements.prepend(cardItem);
-
-// });
-
 // Слушатели userPopup
 popupUserOpenButton.addEventListener("click", () => {
-openedPopupUser();
-userFormValid.enableValidation();});
+  openedPopupUser();
+  userFormValid.enableValidation();
+});
 
 popupUserCloseButton.addEventListener("click", () => closedPopup(popupUser));
 formElement.addEventListener("submit", handlerUserFormSubmit);
