@@ -29,7 +29,7 @@ const cardNameFormInput = popupAddCard.querySelector(
   ".popup-add-card__form-input_place"
 );
 
-const cardsElements = document.querySelector(".elements");
+const cardsElement = document.querySelector(".elements");
 
 const initialCards = [
   {
@@ -74,12 +74,14 @@ const enableValidation = {
 };
 
 const userFormValid = new FormValidator(enableValidation, "#userForm");
+userFormValid.enableValidation();
 
 const cardValid = new FormValidator(enableValidation, "#addCard");
+cardValid.enableValidation();
 
 const getCard = (data) => {
   const card = new Card(data, ".cards-template", () => openBigImage(data));
-  card.renderCard(cardsElements);
+  cardsElement.append(card.renderCard());
 };
 
 initialCards.forEach(getCard);
@@ -102,10 +104,11 @@ const handLeEscUp = (event) => {
     closedPopup(activePopup);
   }
 };
-popupUser.addEventListener("click", closedOverlayPopup);
+
 function openedPopup(popup) {
   document.addEventListener("keyup", handLeEscUp);
   popup.classList.add("popup_active");
+
 }
 
 function closedPopup(popup) {
@@ -152,7 +155,7 @@ const openBigImage = (data) => {
 // Слушатели userPopup
 popupUserOpenButton.addEventListener("click", () => {
   openedPopupUser();
-  userFormValid.enableValidation();
+  userFormValid.cleanValid();
 });
 
 popupUserCloseButton.addEventListener("click", () => closedPopup(popupUser));
@@ -163,7 +166,8 @@ openAddCard.addEventListener("click", () => {
   cardNameFormInput.value = "";
   cardLinkFormInput.value = "";
   openedPopup(popupAddCard);
-  cardValid.enableValidation();
+  cardValid.cleanValid();
+  
 });
 
 submitCardForm.addEventListener("submit", handleCardFormSubmit);

@@ -23,20 +23,19 @@ export class Card {
     this.Image.alt = `Изображение ${this.name}`;
     this.like = this._content.querySelector(".element__like");
     this._content
-    .querySelector(".element__remove")
-    .addEventListener("click", () => this._delete());
-    
+      .querySelector(".element__remove")
+      .addEventListener("click", () => this._delete());
+
     this.like.addEventListener("click", () => this._toggleLike());
-    
-    this.Image.addEventListener("click", () =>
-    this.openBigImage());
+
+    this.Image.addEventListener("click", () => this.openBigImage());
     console.log(this._content);
-    cardsElements.prepend(this._content);
+
+  return this._content;
+
   }
 
-  
-  _addEventListeners() {}
-  _delete() {
+   _delete() {
     this._content.remove();
   }
   _toggleLike() {

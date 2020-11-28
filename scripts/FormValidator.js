@@ -1,7 +1,7 @@
 export class FormValidator {
   constructor(setting, popupItem) {
     this.popupItem = popupItem;
-    this.formElement = this.popupItem;
+    this._formSelector = this.popupItem;
     this.formSelector = setting.formSelector;
     this.inputSelector = setting.inputSelector;
     this.submitButtonSelector = setting.submitButtonSelector;
@@ -34,7 +34,7 @@ export class FormValidator {
     }
   }
 
-  _toggleButtonState(formElement, buttonElement, inactiveButtonClass) {
+  _toggleButtonState(_formSelector, buttonElement, inactiveButtonClass) {
     if (this.form.checkValidity()) {
       this.buttonElement.classList.remove(this.inactiveButtonClass);
       this.buttonElement.disabled = false;
@@ -59,12 +59,23 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this.form = document.querySelector(this.formElement);
+    this.form = document.querySelector(this._formSelector);
     this.form.addEventListener("submit", (event) => {
       event.preventDefault();
     });
     this._setEventListeners(this.form);
     this._toggleButtonState();
+  }
+
+  cleanValid() {
+    this.inputElements = Array.from(
+      this.form.querySelectorAll(this.inputSelector)
+    );
+    this.inputElements.forEach((input) => {
+      this.errorElement = this.form.querySelector(`#${input.id}-error`);
+      this.errorElement.classList.remove(this.inputErrorClass);
+      input.classList.remove(this.errorClass);
+    });
   }
 }
 
