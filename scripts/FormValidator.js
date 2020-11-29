@@ -49,6 +49,7 @@ export class FormValidator {
     }
   }
 
+  
   _setEventListeners(form) {
 
     this.inputElements.forEach((input) => {
