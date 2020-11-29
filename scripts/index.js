@@ -166,10 +166,10 @@ openAddCard.addEventListener("click", () => {
   cardNameFormInput.value = "";
   cardLinkFormInput.value = "";
   openedPopup(popupAddCard);
+  
   cardValid.cleanValid();
   
 });
-
 submitCardForm.addEventListener("submit", handleCardFormSubmit);
 closeAddCard.addEventListener("click", () => closedPopup(popupAddCard));
 

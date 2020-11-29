@@ -46,10 +46,3 @@ export class Card {
     this.openBigImage(data);
   }
 }
-
-// const openBigImage = (dataBigImage) => {
-//   bigImageItem.src = dataBigImage.link;
-//   bigImageItem.alt = `Изображение ${dataBigImage.name}`;
-//   bigImageName.textContent = dataBigImage.name;
-
-//   openedPopup(bigImage);
