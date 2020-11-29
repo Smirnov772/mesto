@@ -1,3 +1,4 @@
+import { Popup } from "./Popup.js";
 export class Card {
   constructor(data, templateSelector, openBigImage) {
     this.openBigImage = openBigImage;
