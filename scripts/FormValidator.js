@@ -8,6 +8,9 @@ export class FormValidator {
     this.inactiveButtonClass = setting.inactiveButtonClass;
     this.inputErrorClass = setting.inputErrorClass;
     this.errorClass = setting.errorClass;
+    this.form = document.querySelector(this._formSelector);
+    this.inputElements = Array.from(
+      this.form.querySelectorAll(this.inputSelector));
   }
 
   _showError(inputElements, input) {
@@ -25,7 +28,7 @@ export class FormValidator {
   }
 
   _checkInputValidity(inputElements, input) {
-    //this.setCustomValidity("");
+
 
     if (input.validity.valid) {
       this._hideError(inputElements, input);
@@ -46,9 +49,8 @@ export class FormValidator {
 
   _setEventListeners(form) {
     this.buttonElement = this.form.querySelector(this.submitButtonSelector);
-    this.inputElements = Array.from(
-      this.form.querySelectorAll(this.inputSelector)
-    );
+
+
 
     this.inputElements.forEach((input) => {
       input.addEventListener("input", (input) => {
@@ -59,7 +61,6 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this.form = document.querySelector(this._formSelector);
     this.form.addEventListener("submit", (event) => {
       event.preventDefault();
     });
@@ -68,9 +69,7 @@ export class FormValidator {
   }
 
   cleanValid() {
-    this.inputElements = Array.from(
-      this.form.querySelectorAll(this.inputSelector)
-    );
+
     this.inputElements.forEach((input) => {
       this.errorElement = this.form.querySelector(`#${input.id}-error`);
       this.errorElement.classList.remove(this.inputErrorClass);
@@ -78,12 +77,3 @@ export class FormValidator {
     });
   }
 }
-
-// enableValidation({
-//   formSelector: ".popup__forms",
-//   inputSelector: ".popup__form-input",
-//   submitButtonSelector: ".popup__save-button",
-//   inactiveButtonClass: "popup__save-button_disabled",
-//   inputErrorClass: "popup__input_type_error",
-//   errorClass: "popup__error_visible",
-// });
