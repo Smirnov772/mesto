@@ -1,4 +1,3 @@
-import { Popup } from "./Popup.js";
 export class Card {
   constructor(data, templateSelector, openBigImage) {
     this.openBigImage = openBigImage;
@@ -29,14 +28,13 @@ export class Card {
 
     this.like.addEventListener("click", () => this._toggleLike());
 
-    this.Image.addEventListener("click", () => this.openBigImage());
-    console.log(this._content);
-
-  return this._content;
-
+    this.Image.addEventListener("click", this.openBigImage);
+    
+    return this._content;
+    
   }
 
-   _delete() {
+  _delete() {
     this._content.remove();
   }
   _toggleLike() {

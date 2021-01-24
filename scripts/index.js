@@ -2,11 +2,12 @@ import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+// import { UserInfo } from "./UserInfo.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 
 const popupUser = document.querySelector(".popup-user");
+const popupUserConteiner = popupUser.querySelector(".popup-user__container");
 const popupUserOpenButton = document.querySelector(".profile__edit-button");
 const popupUserCloseButton = document.querySelector(".popup__close-button");
 
@@ -36,7 +37,7 @@ const cardNameFormInput = popupAddCard.querySelector(
 
 const cardsElement = document.querySelector(".elements");
 
-const initialCards = [
+const cards = [
   {
     name: "Архыз",
     link:
@@ -78,54 +79,49 @@ const enableValidation = {
   errorClass: "popup__error_visible",
 };
 
+const section = new Section(
+  {
+    items: cards,
+    renderer: (data) => {
+      const card = new Card(data, ".cards-template", () => {
+        const popupWithImage = new PopupWithImage(card, bigImage);
+        popupWithImage.open();
+        popupWithImage.setEventListeners(closebuttonBigImage);
+      });
+      section.addItem(card.renderCard());
+      //  cardsElement.append(card.renderCard());
+    },
+  },
+  cardsElement
+);
+section.renderedItems();
+
 const userFormValid = new FormValidator(enableValidation, "#userForm");
 userFormValid.enableValidation();
 
 const cardValid = new FormValidator(enableValidation, "#addCard");
 cardValid.enableValidation();
 
-const getCard = (data) => {
-  const card = new Card(data, ".cards-template", () => openBigImage(data));
-  cardsElement.append(card.renderCard());
-};
+const popupWithForm = new PopupWithForm(popupAddCard, {
+  handleCardFormSubmit: (data) => {
+    const newCard = new Card(data, ".cards-template", () => {
+newCard.open(card);
+    });
+    
+    popupWithForm.setEventListeners(cardValid);
+  },
+});
 
-initialCards.forEach(getCard);
-
-//закрытие попапов <
-const closedOverlayPopup = (event) => {
-  const activePopup = document.querySelector(".popup_active");
-  if (event.target !== event.currentTarget) return;
-  closedPopup(activePopup);
-};
-popupUser.addEventListener("click", closedOverlayPopup);
-bigImage.addEventListener("click", closedOverlayPopup);
-popupAddCard.addEventListener("click", closedOverlayPopup);
-// >
-
-const handLeEscUp = (event) => {
-  event.preventDefault();
-  const activePopup = document.querySelector(".popup_active");
-  if (event.key === "Escape") {
-    closedPopup(activePopup);
-  }
-};
-
-function openedPopup(popup) {
-  document.addEventListener("keyup", handLeEscUp);
-  popup.classList.add("popup_active");
-
-}
-
-function closedPopup(popup) {
-  document.removeEventListener("keyup", handLeEscUp);
-  popup.classList.remove("popup_active");
-}
+popupWithForm.setEventListeners(submitCardForm);
+const UserPopup = new Popup(popupUser);
+const addCardPopup = new Popup(popupAddCard);
 
 function openedPopupUser() {
   nameInput.value = userName.textContent;
   jobInput.value = userOccupation.textContent;
 
-  openedPopup(popupUser);
+  UserPopup.open();
+  UserPopup.setEventListeners(popupUserCloseButton);
 }
 
 function handlerUserFormSubmit(event) {
@@ -140,21 +136,12 @@ function handlerUserFormSubmit(event) {
 const handleCardFormSubmit = (event) => {
   event.preventDefault();
 
-  const cardItem = getCard({
+  section.addItem({
     name: cardNameFormInput.value,
     link: cardLinkFormInput.value,
   });
 
-  closedPopup(popupAddCard);
-};
-
-// Открытие большой картинки
-const openBigImage = (data) => {
-  bigImageItem.src = data.link;
-  bigImageItem.alt = `Изображение ${data.name}`;
-  bigImageName.textContent = data.name;
-
-  openedPopup(bigImage);
+  addCardPopup.close();
 };
 
 // Слушатели userPopup
@@ -163,19 +150,62 @@ popupUserOpenButton.addEventListener("click", () => {
   userFormValid.cleanValid();
 });
 
-popupUserCloseButton.addEventListener("click", () => closedPopup(popupUser));
+//popupUserCloseButton.addEventListener("click", () => UserPopup.close());
 formElement.addEventListener("submit", handlerUserFormSubmit);
 
 // Слушатели карточек
 openAddCard.addEventListener("click", () => {
   cardNameFormInput.value = "";
   cardLinkFormInput.value = "";
-  openedPopup(popupAddCard);
-  
+  addCardPopup.open();
+  addCardPopup.setEventListeners(closeAddCard);
   cardValid.cleanValid();
-  
 });
-submitCardForm.addEventListener("submit", handleCardFormSubmit);
-closeAddCard.addEventListener("click", () => closedPopup(popupAddCard));
+// const getCard = (data) => {
+//   const card = new Card(data, ".cards-template", () => openBigImage(data));
+//   cardsElement.append(card.renderCard());
+// };
 
-closebuttonBigImage.addEventListener("click", () => closedPopup(bigImage));
+// initialCards.forEach(getCard);
+
+//закрытие попапов <
+// const closedOverlayPopup = (event) => {
+//   const activePopup = document.querySelector(".popup_active");
+//   if (event.target !== event.currentTarget) return;
+//   closedPopup(activePopup);
+// };
+// popupUser.addEventListener("click", closedOverlayPopup);
+// bigImage.addEventListener("click", closedOverlayPopup);
+// popupAddCard.addEventListener("click", closedOverlayPopup);
+// >
+
+// const handLeEscUp = (event) => {
+//   event.preventDefault();
+//   const activePopup = document.querySelector(".popup_active");
+//   if (event.key === "Escape") {
+//     closedPopup(activePopup);
+//   }
+// };
+
+// function openedPopup(popup) {
+//   document.addEventListener("keyup", handLeEscUp);
+//   popup.classList.add("popup_active");
+// }
+
+// function closedPopup(popup) {
+//   document.removeEventListener("keydown", handLeEscUp);
+//   popup.classList.remove("popup_active");
+// }
+// Открытие большой картинки
+// const bigImagePopup = new Popup(bigImage);
+//const openBigImage = (data) => {
+// bigImageItem.src = data.link;
+// bigImageItem.alt = `Изображение ${data.name}`;
+// bigImageName.textContent = data.name;
+//};
+// submitCardForm.addEventListener("submit", ()=> {
+// popupWithForm.open();
+// popupWithForm.setEventListener(submitCardForm)});
+// closeAddCard.addEventListener("click", () => addCardPopup.close());
+
+// closebuttonBigImage.addEventListener("click", () => bigImagePopup.close());
