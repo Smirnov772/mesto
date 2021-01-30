@@ -5,7 +5,7 @@ export class PopupWithImage extends Popup {
    // this.popupImageSelector = popupImageSelector
     this.link = data.link;
     this.name = data.name;
-    console.log(this.link)
+    
   }
   open() {
     this.popupSelector.querySelector(".big-image__item").src = this.link;
@@ -13,9 +13,10 @@ export class PopupWithImage extends Popup {
     this.popupSelector.querySelector(".big-image__name").textContent =
     this.name;
     super.open();
+    
   }
-  setEventListeners(closeButton) {
+  setEventListeners() {
 
-    super.setEventListeners(closeButton);
+    super.setEventListeners();
   }
 }
