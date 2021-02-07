@@ -29,9 +29,8 @@ export class Card {
     this.like.addEventListener("click", () => this._toggleLike());
 
     this.Image.addEventListener("click", this.openBigImage);
-    
+
     return this._content;
-    
   }
 
   _delete() {

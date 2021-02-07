@@ -2,7 +2,7 @@ import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
-// import { UserInfo } from "./UserInfo.js";
+import { UserInfo } from "./UserInfo.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 
@@ -11,7 +11,7 @@ const popupUserOpenButton = document.querySelector(".profile__edit-button");
 const popupUserCloseButton = document.querySelector(".popup__close-button");
 
 const userName = document.querySelector(".profile__name");
-const userOccupation = document.querySelector(".profile__occupation");
+const userJob = document.querySelector(".profile__occupation");
 const formElement = document.querySelector(".popup__container");
 const nameInput = formElement.querySelector(".popup__form-input_name");
 const jobInput = formElement.querySelector(".popup__form-input_occupation");
@@ -78,6 +78,8 @@ const enableValidation = {
   errorClass: "popup__error_visible",
 };
 
+
+// Инициализация классов
 const section = new Section(
   {
     items: cards,
@@ -93,45 +95,13 @@ const section = new Section(
   },
   cardsElement
 );
-section.renderedItems();
-
 const userFormValid = new FormValidator(enableValidation, "#userForm");
 userFormValid.enableValidation();
 
 const cardValid = new FormValidator(enableValidation, "#addCard");
 cardValid.enableValidation();
 
-// const popupWithForm = new PopupWithForm(
-
-//   popupAddCard, {
-//   handleCardFormSubmit: (data) => {
-//     const newCard = new Card(data, ".cards-template", () => {
-// newCard.open(card);
-//     }
-
-//     );
-
-//     popupWithForm.setEventListeners(cardValid);
-//   },
-// }
-
-// );
-
-// popupWithForm.setEventListeners(submitCardForm);
-
-const UserPopup = new Popup(popupUser);
-
-// открытие попапа карточек
-const addCardPopup = new Popup(popupAddCard);
-openAddCard.addEventListener("click", () => {
-  //  cardNameFormInput.value = "";
-  //  cardLinkFormInput.value = "";
-  addCardPopup.open();
-  addCardPopup.setEventListeners();
-  //cardValid.cleanValid();
-});
-
-const popupForm = new PopupWithForm(popupAddCard, (item) => {
+const addCardWithForm = new PopupWithForm(popupAddCard, (item) => {
   const card = new Card(
     { name: item.cadrName, link: item.Link },
     ".cards-template",
@@ -140,50 +110,46 @@ const popupForm = new PopupWithForm(popupAddCard, (item) => {
       popupWithImage.open();
       popupWithImage.setEventListeners(closebuttonBigImage);
     }
-  );
-
-  section.addItem(card.renderCard());
-
-  // const cardElement = card.generateCard();
-
-  // cardsList.setItem(cardElement);
-  //section.renderedItems();
+    );
+    
+    section.addItem(card.renderCard());
 });
-popupForm.setEventListeners();
 
-function openedPopupUser() {
-  nameInput.value = userName.textContent;
-  jobInput.value = userOccupation.textContent;
+const userInfo = new UserInfo(userName, userJob);
 
-  UserPopup.open();
-  UserPopup.setEventListeners(popupUserCloseButton);
-}
+const userPopup = new Popup(popupUser);
 
-function handlerUserFormSubmit(event) {
-  event.preventDefault();
+const addCardPopup = new Popup(popupAddCard);
+//-------------
 
-  userName.textContent = nameInput.value;
-  userOccupation.textContent = jobInput.value;
-
-  closedPopup(popupUser);
-}
-
-// const handleCardFormSubmit = (event) => {
-//   event.preventDefault();
-
-//   section.addItem({
-//     name: cardNameFormInput.value,
-//     link: cardLinkFormInput.value,
-//   });
-
-//  // addCardPopup.close();
-// };
+// открытие попапа добавления карточек
+openAddCard.addEventListener("click", () => {
+  addCardPopup.open();
+  addCardPopup.setEventListeners();
+});
+//------------
 
 // Слушатели userPopup
 popupUserOpenButton.addEventListener("click", () => {
-  openedPopupUser();
-  userFormValid.cleanValid();
+  const getUserInfo = userInfo.getUserInfo();
+  nameInput.value = getUserInfo.name;
+  jobInput.value = getUserInfo.job;
+  userPopup.open();
+  userPopup.setEventListeners();
 });
 
-//popupUserCloseButton.addEventListener("click", () => UserPopup.close());
-//formElement.addEventListener("submit", handlerUserFormSubmit);
+popupUser.addEventListener("submit", (event) => {
+  event.preventDefault();
+  userInfo.setUserInfo(nameInput.value, jobInput.value);
+  const updateUserInfo = userInfo.updateUserInfo();
+  userName.textContent = updateUserInfo.name;
+  userJob.textContent = updateUserInfo.job;
+  userPopup.close();
+});
+//--------------
+
+// Вызовы методов при загрузке
+section.renderedItems();
+addCardWithForm.setEventListeners();
+userInfo.setUserInfo(userName.textContent, userJob.textContent);
+//-------------
