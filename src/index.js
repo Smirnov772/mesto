@@ -1,10 +1,11 @@
-import { Section } from "./Section.js";
-import { Popup } from "./Popup.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import './pages/index.css';
+import { Section } from "./components/Section.js";
+import { Popup } from "./components/Popup.js";
+import { PopupWithImage } from "./components/PopupWithImage.js";
+import { PopupWithForm } from "./components/PopupWithForm.js";
+import { UserInfo } from "./components/UserInfo.js";
+import { Card } from "./components/Card.js";
+import { FormValidator } from "./components/FormValidator.js";
 
 const popupUser = document.querySelector(".popup-user");
 const popupUserOpenButton = document.querySelector(".profile__edit-button");
@@ -78,7 +79,6 @@ const enableValidation = {
   errorClass: "popup__error_visible",
 };
 
-
 // Инициализация классов
 const section = new Section(
   {
@@ -110,9 +110,9 @@ const addCardWithForm = new PopupWithForm(popupAddCard, (item) => {
       popupWithImage.open();
       popupWithImage.setEventListeners(closebuttonBigImage);
     }
-    );
-    
-    section.addItem(card.renderCard());
+  );
+
+  section.addItem(card.renderCard());
 });
 
 const userInfo = new UserInfo(userName, userJob);

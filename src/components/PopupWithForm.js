@@ -2,7 +2,7 @@ import { Popup } from "./Popup.js";
 export class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
-   this._form = this.popupSelector.querySelector(".popup__forms");
+    this._form = this.popupSelector.querySelector(".popup__forms");
     //this.popupSelector = popupSelector;
     this._handleFormSubmit = handleFormSubmit;
     // this.handleCardFormSubmit = handleCardFormSubmit;
@@ -21,14 +21,14 @@ export class PopupWithForm extends Popup {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
       this.close();
-      
     });
     super.setEventListeners();
   }
 
   close() {
     console.log(this._formValues);
-    super.close();this._form.reset();
+    super.close();
+    this._form.reset();
     //  this.popupSelector.reset();
   }
 }
