@@ -58,11 +58,11 @@
             <p class="popup-add-card__paragraph popup__paragraph">Добавить место</p>
             <form name="addCard" id="addCard" class="popup-add-card__forms popup__forms" novalidate>
                 <input required minlength="1" maxlength="40" id="cardName" type="text" name="cadrName" value=""
-                    placeholder="Имя нового места" class="popup-add-card__form-input_place popup__form-input">
-                <span  class="input_type_error"></span>
+                    placeholder="Имя нового места" class="popup__form-input">
+                <span id="cardName-error" class="input_type_error"></span>
                 <input required id="cardLink" type="url" name="Link" value="" placeholder="Ссылка на изображение"
-                    class="popup-add-card__form-input_link popup__form-input">
-                <span  class="input_type_error"></span>
+                    class="popup__form-input">
+                <span id="cardLink-error" class="input_type_error"></span>
                 <button class="popup-add-card__save-button popup__save-button" type="submit">Создать</button>
             </form>
 
