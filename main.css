@@ -32,7 +32,7 @@
 .popup__paragraph{align-self:flex-start;font-family:Inter,Arial,sans-serif;font-style:normal;font-weight:900;font-size:24px;line-height:29px;color:#000;margin:0 0 28px}
 .popup__save-button_disabled{background:#fff!important;color:#000!important;border:1px solid #000!important}
 .popup__save-button{max-width:358px;width:100%;min-height:50px;margin:48px auto 0;background:#000;color:#fff;border:none;border-radius:2px;font-family:Inter,Arial,sans-serif;font-style:normal;font-weight:400;font-size:18px;line-height:22px;text-align:center}.popup__save-button:hover{opacity:.5;transition:.3s;cursor:pointer}
-.popup__input_type-error{font-style:normal;font-weight:400;font-size:12px;line-height:15px;color:red}
+.input_type_error{font-style:normal;font-weight:400;font-size:12px;line-height:15px;color:red}
 .popup__error_visible{border-bottom:1px solid red!important}
 
 .popup{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.6);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s ease .5s}
