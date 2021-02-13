@@ -1,6 +1,6 @@
 @import url(./_name/popup__form-input_name.css);
 @import url(./_occupation/popup__form-input_occupation.css);
-@import url(./_error/popup__input_error.css);
+@import url(./_type/_error/popup__form-input_type_error.css);
 
 .popup__form-input {
     width        : 100%;

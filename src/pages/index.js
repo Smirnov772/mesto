@@ -1,4 +1,4 @@
-import './index.css';
+// import './index.css';
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
