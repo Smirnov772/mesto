@@ -1,4 +1,4 @@
-.popupAddCard_active {
+.popup-add-card_active {
   opacity   : 1 !important;
   visibility: visible !important;
   transition: opacity .5s ease !important;
