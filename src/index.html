@@ -41,10 +41,10 @@
             <form name="userForm" id="userForm" class="popup__forms" novalidate>
                 <input required minlength="2" maxlength="40" type="text" id="userName" name="userName" value=""
                     placeholder="Жак-Ив Кусто" class="popup__form-input popup__form-input_name">
-                <span id="userName-error" ></span>
+                <span id="userName-error" class="input_type_error"></span>
                 <input required minlength="2" maxlength="200" type="text" id="userJob" name="userJob" value=""
                     placeholder="Исследователь океана" class="popup__form-input popup__form-input_occupation">
-                <span id="userJob-error" ></span>
+                <span id="userJob-error" class="input_type_error"></span>
                 <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
 
@@ -59,10 +59,10 @@
             <form name="addCard" id="addCard" class="popup-add-card__forms popup__forms" novalidate>
                 <input required minlength="1" maxlength="40" id="cardName" type="text" name="cadrName" value=""
                     placeholder="Имя нового места" class="popup-add-card__form-input_place popup__form-input">
-                <span id="cardName-error" ></span>
+                <span  class="input_type_error"></span>
                 <input required id="cardLink" type="url" name="Link" value="" placeholder="Ссылка на изображение"
                     class="popup-add-card__form-input_link popup__form-input">
-                <span id="cardLink-error" ></span>
+                <span  class="input_type_error"></span>
                 <button class="popup-add-card__save-button popup__save-button" type="submit">Создать</button>
             </form>
 
