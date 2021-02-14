@@ -18,9 +18,9 @@ export class Card {
   renderCard(cardsElements) {
     this._content = this._getTemplate();
     this._content.querySelector(".element__paragraph").textContent = this.name;
-    this.Image = this._content.querySelector(".element__image");
-    this.Image.src = this.link;
-    this.Image.alt = `Изображение ${this.name}`;
+    this.image = this._content.querySelector(".element__image");
+    this.image.src = this.link;
+    this.image.alt = `Изображение ${this.name}`;
     this.like = this._content.querySelector(".element__like");
     this._content
       .querySelector(".element__remove")
@@ -28,7 +28,7 @@ export class Card {
 
     this.like.addEventListener("click", () => this._toggleLike());
 
-    this.Image.addEventListener("click", this.openBigImage);
+    this.image.addEventListener("click", this.openBigImage);
 
     return this._content;
   }

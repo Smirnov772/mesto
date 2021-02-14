@@ -78,19 +78,22 @@ const enableValidation = {
   inputErrorClass: "popup__form-input_type_error",
   errorClass: "popup__error_visible",
 };
+const popupWithImage = new PopupWithImage(bigImage);
+popupWithImage.setEventListeners(closebuttonBigImage);
 
+function createCard(data) {
+  const cardInstance = new Card(data, ".cards-template", () => {
+    popupWithImage.open(data);
+  });
+  const card = cardInstance.renderCard();
+  return card;
+}
 // Инициализация классов
 const section = new Section(
   {
     items: cards,
     renderer: (data) => {
-      const card = new Card(data, ".cards-template", () => {
-        const popupWithImage = new PopupWithImage(card, bigImage);
-        popupWithImage.open();
-        popupWithImage.setEventListeners(closebuttonBigImage);
-      });
-      section.addItem(card.renderCard());
-      //  cardsElement.append(card.renderCard());
+      section.addItem(createCard(data));
     },
   },
   cardsElement
@@ -102,54 +105,37 @@ const cardValid = new FormValidator(enableValidation, "#addCard");
 cardValid.enableValidation();
 
 const addCardWithForm = new PopupWithForm(popupAddCard, (item) => {
-  const card = new Card(
-    { name: item.cadrName, link: item.Link },
-    ".cards-template",
-    () => {
-      const popupWithImage = new PopupWithImage(card, bigImage);
-      popupWithImage.open();
-      popupWithImage.setEventListeners(closebuttonBigImage);
-    }
-  );
-
-  section.addItem(card.renderCard());
+  section.addItem(createCard({ name: item.cadrName, link: item.Link }));
 });
 
 const userInfo = new UserInfo(userName, userJob);
+const userWithForm = new PopupWithForm(popupUser, () => {
+  userInfo.setUserInfo({ name: nameInput.value, job: jobInput.value });
+  userInfo.setUserInfo(nameInput.value, jobInput.value);
+  userInfo.getUserInfo();
+  const updateUserInfo = userInfo.updateUserInfo();
+  userName.textContent = updateUserInfo.name;
+  userJob.textContent = updateUserInfo.job;
+});
 
-const userPopup = new Popup(popupUser);
 
-const addCardPopup = new Popup(popupAddCard);
 //-------------
 
 // открытие попапа добавления карточек
 openAddCard.addEventListener("click", () => {
-  addCardPopup.open();
-  addCardPopup.setEventListeners();
+  addCardWithForm.setEventListeners();
 });
 //------------
 
-// Слушатели userPopup
+// открытие userPopup
 popupUserOpenButton.addEventListener("click", () => {
+  userWithForm.setEventListeners();
+  userInfo.setUserInfo(userName.textContent, userJob.textContent);
   const getUserInfo = userInfo.getUserInfo();
   nameInput.value = getUserInfo.name;
   jobInput.value = getUserInfo.job;
-  userPopup.open();
-  userPopup.setEventListeners();
-});
 
-popupUser.addEventListener("submit", (event) => {
-  event.preventDefault();
-  userInfo.setUserInfo(nameInput.value, jobInput.value);
-  const updateUserInfo = userInfo.updateUserInfo();
-  userName.textContent = updateUserInfo.name;
-  userJob.textContent = updateUserInfo.job;
-  userPopup.close();
 });
-//--------------
 
 // Вызовы методов при загрузке
 section.renderedItems();
-addCardWithForm.setEventListeners();
-userInfo.setUserInfo(userName.textContent, userJob.textContent);
-//-------------

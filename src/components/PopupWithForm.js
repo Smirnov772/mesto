@@ -1,15 +1,15 @@
 import { Popup } from "./Popup.js";
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
-    super(popupSelector);
-    this._form = this.popupSelector.querySelector(".popup__forms");
-    //this.popupSelector = popupSelector;
+  constructor(popupElement, handleFormSubmit) {
+    super(popupElement);
+    this._form = this.popupElement.querySelector(".popup__forms");
+    //this.popupElement = popupElement;
     this._handleFormSubmit = handleFormSubmit;
     // this.handleCardFormSubmit = handleCardFormSubmit;
   }
 
   _getInputValues() {
-    this._inputList = this.popupSelector.querySelectorAll(".popup__form-input");
+    this._inputList = this.popupElement.querySelectorAll(".popup__form-input");
     this._formValues = {};
     this._inputList.forEach(
       (input) => (this._formValues[input.name] = input.value)
@@ -17,6 +17,7 @@ export class PopupWithForm extends Popup {
     return this._formValues;
   }
   setEventListeners() {
+    super.open();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
@@ -29,6 +30,6 @@ export class PopupWithForm extends Popup {
     console.log(this._formValues);
     super.close();
     this._form.reset();
-    //  this.popupSelector.reset();
+    //  this.popupElement.reset();
   }
 }

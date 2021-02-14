@@ -2,16 +2,17 @@ export class UserInfo {
   constructor(nameEditProfile, jobEditProfile) {
     this._nameEditProfile = nameEditProfile;
     this._JobEditProfile = jobEditProfile;
-    this._job = "";
     this._name = "";
+    this._job = "";
   }
-  setUserInfo(newName, newJob) {
-    this._name = newName;
-    this._job = newJob;
+  setUserInfo(userName, userJob) {
+    this._nameEditProfile = userName;
+    this._JobEditProfile = userJob;
+
   }
   updateUserInfo() {
-    this._userName = this._name;
-    this._userJob = this._job;
+    this._userName = this._nameEditProfile;
+    this._userJob = this._JobEditProfile ;
     return {
       name: this._userName,
       job: this._userJob,
@@ -20,8 +21,8 @@ export class UserInfo {
 
   getUserInfo() {
     return {
-      name: this._name,
-      job: this._job,
+      name: this._nameEditProfile,
+      job: this._JobEditProfile,
     };
   };
 }
