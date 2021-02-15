@@ -1,4 +1,4 @@
-// import './index.css';
+import './index.css';
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
@@ -106,14 +106,14 @@ cardValid.enableValidation();
 
 const addCardWithForm = new PopupWithForm(popupAddCard, (item) => {
   section.addItem(createCard({ name: item.cadrName, link: item.Link }));
-});
+});  addCardWithForm.setEventListeners();
 
 const userInfo = new UserInfo(userName, userJob);
-const userWithForm = new PopupWithForm(popupUser, () => {
-  userInfo.setUserInfo({ name: nameInput.value, job: jobInput.value });
+const userWithForm = new PopupWithForm(popupUser, (item) => {
+  userInfo.setUserInfo(item.userName, item.userJob);
   userInfo.setUserInfo(nameInput.value, jobInput.value);
   userInfo.getUserInfo();
-  const updateUserInfo = userInfo.updateUserInfo();
+  const updateUserInfo = userInfo.getUserInfo();
   userName.textContent = updateUserInfo.name;
   userJob.textContent = updateUserInfo.job;
 });
@@ -123,14 +123,14 @@ const userWithForm = new PopupWithForm(popupUser, () => {
 
 // открытие попапа добавления карточек
 openAddCard.addEventListener("click", () => {
-  addCardWithForm.setEventListeners();
+  addCardWithForm.open()
 });
 //------------
-
+userWithForm.setEventListeners();
 // открытие userPopup
 popupUserOpenButton.addEventListener("click", () => {
-  userWithForm.setEventListeners();
-  userInfo.setUserInfo(userName.textContent, userJob.textContent);
+  userWithForm.open();
+ // userInfo.setUserInfo(userName.textContent, userJob.textContent);
   const getUserInfo = userInfo.getUserInfo();
   nameInput.value = getUserInfo.name;
   jobInput.value = getUserInfo.job;
