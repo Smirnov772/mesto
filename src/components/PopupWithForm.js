@@ -24,9 +24,7 @@ export class PopupWithForm extends Popup {
     });
     super.setEventListeners();
   }
-  open() {
-    super.open();
-  }
+
   close() {
     console.log(this._formValues);
     super.close();
