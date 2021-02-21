@@ -5,9 +5,10 @@ export class UserInfo {
     // this._name = "";
     // this._job = "";
   }
-  setUserInfo(userName, userJob) { 
-    this._nameEditProfile.textContent = userName; 
-    this._JobEditProfile.textContent = userJob; 
+  setUserInfo({name, about, _id}) { 
+    this._nameEditProfile.textContent = name; 
+    this._JobEditProfile.textContent = about; 
+    this._id = _id;
 } 
   // updateUserInfo() {
   //   this._userName = this._nameEditProfile;
@@ -17,7 +18,9 @@ export class UserInfo {
   //     job: this._userJob,
   //   };
   // };
-
+  getMyId(){
+    return this._id;
+  }
   getUserInfo() {
     return {
       name: this._nameEditProfile.textContent,

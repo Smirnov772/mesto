@@ -4,7 +4,7 @@
 .element__like {
     grid-area          : like;
     width              : 21px;
-    height             : 18px;
+    height             : 19px;
     border             : none;
     background-repeat  : no-repeat;
     background-position: center;

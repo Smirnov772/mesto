@@ -1,10 +1,12 @@
 export class Card {
-  constructor(data, templateSelector, openBigImage) {
+  constructor({ data }, templateSelector, openBigImage, handleDeleteIconClick) {
     this.openBigImage = openBigImage;
+    this.curentId = data.curentId;
     this.name = data.name;
     this.link = data.link;
     this.alt = this.name;
     this._template = document.querySelector(templateSelector);
+    this.handleDeleteIconClick = handleDeleteIconClick;
   }
 
   _getTemplate() {
@@ -15,7 +17,7 @@ export class Card {
     return cardElement;
   }
 
-  renderCard(cardsElements) {
+  renderCard() {
     this._content = this._getTemplate();
     this._content.querySelector(".element__paragraph").textContent = this.name;
     this.image = this._content.querySelector(".element__image");
@@ -24,7 +26,7 @@ export class Card {
     this.like = this._content.querySelector(".element__like");
     this._content
       .querySelector(".element__remove")
-      .addEventListener("click", () => this._delete());
+      .addEventListener("click", this.handleDeleteIconClick);
 
     this.like.addEventListener("click", () => this._toggleLike());
 

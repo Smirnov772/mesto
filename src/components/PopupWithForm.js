@@ -26,7 +26,6 @@ export class PopupWithForm extends Popup {
   }
 
   close() {
-    console.log(this._formValues);
     super.close();
     this._form.reset();
     //  this.popupElement.reset();

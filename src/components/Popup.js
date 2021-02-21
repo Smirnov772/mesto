@@ -5,7 +5,8 @@ export class Popup {
     this._handleEscClose = this._handleEscClose.bind(this);
     this._handleOverlayClose = this._handleOverlayClose.bind(this);
   }
-  open() {
+  open(data) {
+    this._data = data
     this.popupElement.addEventListener("click", this._handleOverlayClose);
     window.addEventListener("keydown", this._handleEscClose);
     this.popupElement.classList.add("popup_active");
