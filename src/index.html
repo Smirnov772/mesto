@@ -16,7 +16,8 @@
         </header>
         <main class="content">
             <section class="profile">
-                <div class="profile__avatar">
+                <div class="profile__avatar ">
+                    <button class="profile__avatar-pencil" type="button"></button>
                 </div>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -79,9 +80,9 @@
     <div class="popup popup-avatar">
         <div class="popup__container popup-avatar__container">
             <button class="popup__close-button" aria-label="Закрыть попап" type="button"></button>
-            <p class="popup__paragraph">Редактировать профиль</p>
+            <p class="popup__paragraph">Обновить аватар</p>
             <form name="userAvatar" id="userAvatar" class="popup__forms" novalidate>
-                <input required id="urlAvatar" type="url" name="Link" value="" placeholder="Ссылка на аватар"
+                <input required id="urlAvatar" type="url" name="link" value="" placeholder="Ссылка на аватар"
                     class="popup__form-input">
                 <span id="cardLink-error" class=""></span>
                 <button class="popup__save-button" type="submit">Сохранить</button>
@@ -93,9 +94,7 @@
         <div class="popup__container popup-remove__container">
             <button class="popup__close-button" aria-label="Закрыть попап" type="button"></button>
             <p class="popup__paragraph">Вы уверены?</p>
-
-            <button class="popup__save-button" type="submit">Удалить</button>
-
+            <button class="popup__save-button popup__remove-button" type="button">Да</button>
         </div>
     </div>
     <template class="cards-template">

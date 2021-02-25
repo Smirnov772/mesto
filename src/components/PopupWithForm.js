@@ -30,4 +30,7 @@ export class PopupWithForm extends Popup {
     this._form.reset();
     //  this.popupElement.reset();
   }
+  renderLoading(isLoading){
+    super.renderLoading(isLoading)
+  }
 }

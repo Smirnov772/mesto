@@ -31,4 +31,15 @@ export class Popup {
   setEventListeners() {
     this.closeButton.addEventListener("click", () => this.close());
   }
+  renderLoading(isLoading) {
+    if (isLoading) {
+      const submitButton = this.popupElement.querySelector(".popup__save-button");
+      submitButton.textContent = "Сохранение...";
+      console.log("render true");
+    } else {
+      const submitButton = this.popupElement.querySelector(".popup__save-button");
+      submitButton.textContent = "Сохранить";
+      console.log("render folse");
+    }
+  }
 }
