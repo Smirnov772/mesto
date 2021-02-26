@@ -18,7 +18,7 @@ export class Card {
     this.cardId = data._id;
     this.ownerId = data.owner._id;
     this.likesCounter = data.likes.length;
-    this.likes = data.likes;
+    this._likes = data.likes;
     this.name = data.name;
     this.link = data.link;
     this.alt = this.name;
@@ -37,11 +37,11 @@ export class Card {
   renderCard() {
     this._content = this._getTemplate();
     this._content.querySelector(".element__paragraph").textContent = this.name;
-    this.image = this._content.querySelector(".element__image");
-    this.image.src = this.link;
-    this.image.alt = `Изображение ${this.name}`;
-    this.likeButton = this._content.querySelector(".element__like");
-    this.lakesNumber = this._content.querySelector(".element__like-number");
+    this._image = this._content.querySelector(".element__image");
+    this._image.src = this.link;
+    this._image.alt = `Изображение ${this.name}`;
+    this._likeButton = this._content.querySelector(".element__like");
+    this._lakesNumber = this._content.querySelector(".element__like-number");
     this._content
       .querySelector(".element__remove")
       .addEventListener("click", () => {
@@ -50,8 +50,10 @@ export class Card {
 
     this._checkLike();
     this._showDeleteIcon();
-    this.likeButton.addEventListener("click", this._buttonLike.bind(this));
-    this.image.addEventListener("click", () => this.handleCardClick(this.data));
+    this._likeButton.addEventListener("click", this._buttonLike.bind(this));
+    this._image.addEventListener("click", () =>
+      this.handleCardClick(this.data)
+    );
     return this._content;
   }
 
@@ -61,30 +63,32 @@ export class Card {
   }
 
   _checkLike() {
-    this.likes.forEach((item) => {
+    this._likes.forEach((item) => {
       if (item._id === this.userId) {
         this._addLike();
-        this.lakesNumber.textContent = this.likesCounter;
-      } else{this.lakesNumber.textContent = this.likesCounter;}
+        this._lakesNumber.textContent = this.likesCounter;
+      } else {
+        this._lakesNumber.textContent = this.likesCounter;
+      }
     });
   }
   _addLike() {
-    this.likeButton.classList.add("element__like_enable");
+    this._likeButton.classList.add("element__like_enable");
     console.log("вклlike");
     // this.handleLikeClick(this.cardId);
   }
   _removeLike() {
-    this.likeButton.classList.remove("element__like_enable");
+    this._likeButton.classList.remove("element__like_enable");
     // this.lakesNumber.textContent = this.likesCounter;
     console.log("выклlike");
     // this.handleLikeRemove(this.cardId);
   }
   setCardLiked(dataCard) {
-    this.newLikes = dataCard.likes.length;
+    this._newLikes = dataCard.likes.length;
     this._likeNumbers();
   }
   _likeNumbers() {
-    this.lakesNumber.textContent = this.newLikes;
+    this._lakesNumber.textContent = this._newLikes;
   }
   _buttonLike(evt) {
     if (!evt.target.classList.contains("element__like_enable")) {

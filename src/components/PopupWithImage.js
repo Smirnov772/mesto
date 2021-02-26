@@ -3,17 +3,17 @@ export class PopupWithImage extends Popup {
   constructor(popupElement) {
     super(popupElement);
 
-    this.imageLink = this.popupElement.querySelector(".big-image__item");
-    this.imageAlt = this.popupElement.querySelector(".big-image__item");
+    this._imageLink = this._popupElement.querySelector(".big-image__item");
+    this._imageAlt = this._popupElement.querySelector(".big-image__item");
 
     // this.popupImageSelector = popupImageSelector
   }
   open(data) {
-    this.link = data.link;
-    this.name = data.name;
-    this.imageLink.src = this.link;
-    this.imageAlt.alt = `Изображение ${this.name}`;
-    this.imageName.textContent = this.name;
+    this._link = data.link;
+    this._name = data.name;
+    this._imageLink.src = this.link;
+    this._imageAlt.alt = `Изображение ${this.name}`;
+    this._imageName.textContent = this.name;
 
     super.open();
   }
