@@ -5,9 +5,7 @@ export class PopupWithImage extends Popup {
 
     this.imageLink = this.popupElement.querySelector(".big-image__item");
     this.imageAlt = this.popupElement.querySelector(".big-image__item");
-    this.imageName = this.popupElement.querySelector(
-      ".big-image__name"
-    );
+
     // this.popupImageSelector = popupImageSelector
   }
   open(data) {
